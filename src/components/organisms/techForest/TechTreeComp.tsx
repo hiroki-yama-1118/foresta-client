@@ -4,7 +4,6 @@ import { TechBranch } from "../../../types/types";
 import { TechBranchComp } from "../../molucules/techForest/TechBranchComp";
 import { ProgressComp } from "../../molucules/techForest/ProgressComp";
 import { Box, Center, SimpleGrid } from "@chakra-ui/react";
-
 type Props = {
   treeData:
     | {
@@ -28,9 +27,7 @@ type Props = {
       }[]
     | undefined;
 };
-
 export const TechTreeComp: FC<Props> = memo(({ treeData }) => {
-
   /**
    * 進捗率で並び替えした配列
    */
@@ -44,7 +41,6 @@ export const TechTreeComp: FC<Props> = memo(({ treeData }) => {
     if (a.id < b.id) return 1;
     return 0;
   });
-
   return (
     <>
       {sortTreeData &&
@@ -64,8 +60,8 @@ export const TechTreeComp: FC<Props> = memo(({ treeData }) => {
                     TreeName={techTreeData.treeName}
                     AchievementRate={techTreeData.achievementRate}
                   />
-                  {treeData?.[indexOfTreeData].branches &&
-                    treeData?.[indexOfTreeData].branches.map(
+                  {sortTreeData?.[indexOfTreeData].branches &&
+                    sortTreeData?.[indexOfTreeData].branches.map(
                       (
                         techBranchData: TechBranch,
                         indexOfBranchData: number,
@@ -73,7 +69,7 @@ export const TechTreeComp: FC<Props> = memo(({ treeData }) => {
                         return (
                           <TechBranchComp
                             key={indexOfBranchData}
-                            treeData={treeData}
+                            treeData={sortTreeData}
                             indexOfTreeData={indexOfTreeData}
                             techBranchText={techBranchData.name}
                             indexOfBranchData={indexOfBranchData}
